@@ -13,7 +13,7 @@ type PagingResultInfo struct {
 }
 
 // DefaultCalcResultSliceHandler calc ResultSlice
-var DefaultCalcResultSliceHandler = func(optionCollection *OptionCollection, resultCollection *PagingResultCollection) (*PagingResultInfo, error) {
+var DefaultCalcResultSliceHandler = func(optionCollection *PagingOptionCollection, resultCollection *PagingResultCollection) (*PagingResultInfo, error) {
 	var res = new(PagingResultInfo)
 
 	// ResultSlice interface
@@ -46,7 +46,7 @@ var DefaultCalcResultSliceHandler = func(optionCollection *OptionCollection, res
 	// cursor mode .
 	// goto preceding page .
 	// paging option cursor direction(PagingOption.CursorDirection)
-	// and sql order by(OptionCollection.Order.Direction) is opposite .
+	// and sql order by(PagingOptionCollection.Order.Direction) is opposite .
 	// so reverse the ResultSlice.
 	// keep data sort same as paging option cursor direction
 	// not reverse
@@ -69,7 +69,7 @@ var DefaultCalcResultSliceHandler = func(optionCollection *OptionCollection, res
 }
 
 // DefaultCursorValueHandler : calc PagingResult.CursorValue
-var DefaultCursorValueHandler = func(optionCollection *OptionCollection, modelStruct interface{}) ( float64, error) {
+var DefaultCursorValueHandler = func(optionCollection *PagingOptionCollection, modelStruct interface{}) ( float64, error) {
 	mReflectValue := reflect.ValueOf(modelStruct)
 
 	// is pointer struct

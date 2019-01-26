@@ -6,7 +6,7 @@ import (
 )
 
 // getCursorOptionCollection get cursor mode query option collection
-func getCursorOptionCollection(pagingOption *PagingOption, models ...interface{}) (*OptionCollection, error) {
+func getCursorOptionCollection(pagingOption *PagingOption, models ...interface{}) (*PagingOptionCollection, error) {
 	// check cursor column
 	if err := DefaultCursorColumnCheckHandler(pagingOption, models...); err != nil {
 		return nil, err
@@ -99,12 +99,12 @@ var DefaultCursorColumnHandler = func(pagingOption *PagingOption, model interfac
 // 			SELECT * FROM tb_goods WHERE auto_id >= 101 ORDER BY auto_id ASC LIMIT 10 OFFSET 20
 //
 // cursor mode option collection
-var DefaultCursorOptionCollectionHandler = func(pagingOption *PagingOption) *OptionCollection {
+var DefaultCursorOptionCollectionHandler = func(pagingOption *PagingOption) *PagingOptionCollection {
 
 	// init cursor query option collection
 	pageSize := pagingOption.PageSize
 
-	collection := &OptionCollection{
+	collection := &PagingOptionCollection{
 		Option: pagingOption,
 		Limit:  pageSize,
 		Offset: 0,
@@ -265,12 +265,12 @@ var DefaultCursorOptionCollectionHandler = func(pagingOption *PagingOption) *Opt
 // 			SELECT * FROM tb_goods WHERE auto_id >= 101 ORDER BY auto_id DESC LIMIT 10 OFFSET 70
 //
 // AnotherCursorOptionCollectionHandler cursor mode option collection
-var AnotherCursorOptionCollectionHandler = func(pagingOption *PagingOption) *OptionCollection {
+var AnotherCursorOptionCollectionHandler = func(pagingOption *PagingOption) *PagingOptionCollection {
 
 	// init cursor query option collection
 	pageSize := pagingOption.PageSize
 
-	collection := &OptionCollection{
+	collection := &PagingOptionCollection{
 		Option: pagingOption,
 		Limit:  pageSize,
 		Offset: 0,

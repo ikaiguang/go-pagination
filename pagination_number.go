@@ -44,13 +44,13 @@ package pagination
 // 			SELECT * FROM tb_goods ORDER BY auto_id DESC LIMIT 10 OFFSET 70
 //
 // getNumberOptionCollection page number mode option collection
-func getNumberOptionCollection(pagingOption *PagingOption) *OptionCollection {
+func getNumberOptionCollection(pagingOption *PagingOption) *PagingOptionCollection {
 
 	limit := pagingOption.PageSize
 	offset := pagingOption.PageSize * (pagingOption.GotoPageNumber - 1)
 	orderSlice := DefaultPageNumberOrderHandler(pagingOption.OrderBy)
 
-	collection := &OptionCollection{
+	collection := &PagingOptionCollection{
 		Option: pagingOption,
 		Limit:  limit,
 		Offset: offset,

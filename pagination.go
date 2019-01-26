@@ -8,8 +8,8 @@ type PagingWhere struct {
 	Data        interface{} // where data (default : interface{})
 }
 
-// OptionCollection : paging option collection
-type OptionCollection struct {
+// PagingOptionCollection : paging option collection
+type PagingOptionCollection struct {
 	Option    *PagingOption  // option
 	Limit     int64          // limit
 	Offset    int64          // offset
@@ -19,7 +19,7 @@ type OptionCollection struct {
 }
 
 // GetOptionCollection : get paging option collection
-func GetOptionCollection(pagingOption *PagingOption, models ...interface{}) (*OptionCollection, error) {
+func GetOptionCollection(pagingOption *PagingOption, models ...interface{}) (*PagingOptionCollection, error) {
 
 	// init paging option
 	if pagingOption == nil {
@@ -72,7 +72,7 @@ type PagingResultCollection struct {
 }
 
 // SetPagingResult : set paging result
-func SetPagingResult(optionCollection *OptionCollection, resultCollection *PagingResultCollection) (*PagingResult, error) {
+func SetPagingResult(optionCollection *PagingOptionCollection, resultCollection *PagingResultCollection) (*PagingResult, error) {
 
 	// paging option
 	pagingOption := optionCollection.Option

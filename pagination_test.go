@@ -36,7 +36,7 @@ func TestNewCursorValue(t *testing.T) {
 	var model *Model
 	model = &Model{ID: "1.23456789", ValueColumn: 1234}
 
-	collection := &OptionCollection{}
+	collection := &PagingOptionCollection{}
 	collection.Option = DefaultPagingOption()
 	collection.Option.CursorColumn = "ID"
 	//collection.Option.CursorColumn = "value_column"
