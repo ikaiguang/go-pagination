@@ -141,7 +141,7 @@ func WhereConditions(dbConn *gorm.DB, whereConditions []*WhereCondition) *gorm.D
 }
 
 // pagination
-func Pagination(dbConn *gorm.DB, pagingOptionCollection *page.PagingOptionCollection) *gorm.DB {
+func Pagination(dbConn *gorm.DB, pagingOptionCollection *page.OptionCollection) *gorm.DB {
 	// limit offset
 	dbConn = dbConn.Limit(pagingOptionCollection.Limit).Offset(pagingOptionCollection.Offset)
 
@@ -177,7 +177,7 @@ func (m *UserModel) NewModel() *UserModel {
 }
 
 // user model list
-func (m *UserModel) List(whereConditions []*WhereCondition, pagingOptionCollection *page.PagingOptionCollection) (*[]UserModel, int64, error) {
+func (m *UserModel) List(whereConditions []*WhereCondition, pagingOptionCollection *page.OptionCollection) (*[]UserModel, int64, error) {
 	var count int64
 	var list []UserModel
 
@@ -231,9 +231,9 @@ type UserController struct {
 func (c *UserController) List(option *page.PagingOption) (*[]UserModel, *page.PagingResult, error) {
 
 	// get paging query option collection
-	pagingOptionCollection, err := page.GetPagingOptionCollection(option, c.Model.NewModel())
+	pagingOptionCollection, err := page.GetOptionCollection(option, c.Model.NewModel())
 	if err != nil {
-		err := fmt.Errorf("UserController.List GetPagingOptionCollection error : %v", err)
+		err := fmt.Errorf("UserController.List GetOptionCollection error : %v", err)
 		return nil, nil, err
 	}
 
