@@ -71,9 +71,9 @@ var DefaultCalcResultSliceHandler = func(optionCollection *PagingOptionCollectio
 // DefaultCursorValueHandler : calc PagingResult.CursorValue
 var DefaultCursorValueHandler = func(optionCollection *PagingOptionCollection, modelStruct interface{}) (float64, error) {
 	// not cursor mode
-	//if optionCollection.Option.PagingMode != PagingModeCursor {
-	//	return 0, nil
-	//}
+	if optionCollection.Option.PagingMode != PagingModeCursor {
+		return 0, nil
+	}
 
 	mReflectValue := reflect.ValueOf(modelStruct)
 
