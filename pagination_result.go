@@ -69,11 +69,16 @@ var DefaultCalcResultSliceHandler = func(optionCollection *PagingOptionCollectio
 }
 
 // DefaultCursorValueHandler : calc PagingResult.CursorValue
-var DefaultCursorValueHandler = func(optionCollection *PagingOptionCollection, modelStruct interface{}) ( float64, error) {
+var DefaultCursorValueHandler = func(optionCollection *PagingOptionCollection, modelStruct interface{}) (float64, error) {
+	// not cursor mode
+	//if optionCollection.Option.PagingMode != PagingModeCursor {
+	//	return 0, nil
+	//}
+
 	mReflectValue := reflect.ValueOf(modelStruct)
 
 	// is pointer struct
-	if mReflectValue.Kind() == reflect.Ptr{
+	if mReflectValue.Kind() == reflect.Ptr {
 		mReflectValue = mReflectValue.Elem()
 	}
 
@@ -97,6 +102,9 @@ var DefaultCursorValueHandler = func(optionCollection *PagingOptionCollection, m
 
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
 		return float64(columnValue.Int()), nil
+
+	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
+		return float64(columnValue.Uint()), nil
 
 	case reflect.Float32:
 		cursorValue, err := strconv.ParseFloat(fmt.Sprint(columnValue.Interface().(float32)), 32)
