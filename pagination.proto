@@ -5,7 +5,8 @@ option go_package = "pagination";
 package pagination;
 
 /**
- * @apiDefine PagingOption
+ * @apiDefine PagingOption PagingOption
+ *
  * @apiParam (PagingOption) {Bool} [PagingMode] page number mode and cursor mode (default : page number mode)
  * @apiParam (PagingOption) {Int64} [CurrentPageNumber] current page number (default : 0)
  *
@@ -36,7 +37,8 @@ message PagingOption {
 }
 
 /**
- * @apiDefine PagingOrderDefine
+ * @apiDefine PagingOrderDefine PagingOrder
+ *
  * @apiParam (PagingOrder) {-----} ----- paging order (example : order by id desc)
  * @apiParam (PagingOrder) {String} Column order column (default : id)
  * @apiParam (PagingOrder) {String} Direction order direction (default : desc)
@@ -49,7 +51,8 @@ message PagingOrder {
 }
 
 /**
- * @apiDefine PagingResult
+ * @apiDefine PagingResult PagingResult
+ *
  * @apiSuccess (PagingResult) {Int64} PagingMode paging mode
  *
  * @apiSuccess (PagingResult) {Int64} TotalSize total records number

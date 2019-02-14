@@ -1,5 +1,11 @@
 # paginate
 
+```bash
+
+protoc -I. -I$GOPATH/src --go_out=. ./*.proto
+
+```
+
 ## base mode : jump to page number
 
 ```
