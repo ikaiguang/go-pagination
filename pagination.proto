@@ -13,7 +13,7 @@ package pagination;
  * @apiParam (PagingOption) {Int64} [GotoPageNumber] goto page number : which page (default : 1)
  * @apiParam (PagingOption) {Int64} [PageSize] the number of items to be shown per page (default : 15)
  *
- * @apiParam (PagingOption) {Array} OrderBy order by (default : id desc)
+ * @apiParam (PagingOption) {PagingOrder-Array} OrderBy order by (default : {Column:id, Direction:desc})
  *
  * @apiParam (PagingOption) {String} CursorColumn cursor column (default : id)
  * @apiParam (PagingOption) {String} CursorDirection cursor direction : asc or desc (default : desc)
@@ -37,9 +37,10 @@ message PagingOption {
 }
 
 /**
- * @apiDefine PagingOrderDefine PagingOrder
+ * @apiDefine PagingOrder PagingOrder
  *
- * @apiParam (PagingOrder) {-----} ----- paging order (example : order by id desc)
+ * @apiDescription example : PagingOrder = [{Column:id, Direction:desc}, {Column:id, Direction:desc}]
+ *
  * @apiParam (PagingOrder) {String} Column order column (default : id)
  * @apiParam (PagingOrder) {String} Direction order direction (default : desc)
  */

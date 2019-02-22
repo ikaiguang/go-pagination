@@ -27,6 +27,7 @@
 
 # sh
 /push.sh
+/git_commit.sh
 
 # mac .DS_Store
 .DS_Store
