@@ -5,88 +5,88 @@ option go_package = "pagination";
 package pagination;
 
 /**
- * @apiDefine PagingOption PagingOption
+ * @apiDefine paging_option paging_option
  *
- * @apiParam (PagingOption) {Bool} [PagingMode] page number mode and cursor mode (default : page number mode)
- * @apiParam (PagingOption) {Int64} [CurrentPageNumber] current page number (default : 0)
+ * @apiParam (paging_option) {bool} [paging_mode] page number mode and cursor mode (default : page number mode)
+ * @apiParam (paging_option) {int64} [current_page_number] current page number (default : 0)
  *
- * @apiParam (PagingOption) {Int64} [GotoPageNumber] goto page number : which page (default : 1)
- * @apiParam (PagingOption) {Int64} [PageSize] the number of items to be shown per page (default : 15)
+ * @apiParam (paging_option) {int64} [goto_page_number] goto page number : which page (default : 1)
+ * @apiParam (paging_option) {int64} [page_size] the number of items to be shown per page (default : 15)
  *
- * @apiParam (PagingOption) {PagingOrder-Array} OrderBy order by (default : {Column:id, Direction:desc})
+ * @apiParam (paging_option) {paging_order-array} order_by order by (default : {column:id, direction:desc})
  *
- * @apiParam (PagingOption) {String} CursorColumn cursor column (default : id)
- * @apiParam (PagingOption) {String} CursorDirection cursor direction : asc or desc (default : desc)
- * @apiParam (PagingOption) {Double} CursorValue cursor value (default : 0)
+ * @apiParam (paging_option) {string} [cursor_column] cursor column (default : id)
+ * @apiParam (paging_option) {string} [cursor_direction] cursor direction : asc or desc (default : desc)
+ * @apiParam (paging_option) {double} [cursor_value] cursor value (default : 0)
  */
 
-// PagingOption : paging option
-message PagingOption {
+// paging_option : paging option
+message paging_option {
     // paging mode : page number mode andcursor mode
-    int64 PagingMode = 1; // page number mode and cursor mode (default : page number)
-    int64 CurrentPageNumber = 2; // current page number (default : 0)
+    int64 paging_mode = 1; // page number mode and cursor mode (default : page number)
+    int64 current_page_number = 2; // current page number (default : 0)
     // page info
-    int64 GotoPageNumber = 100; // goto page number : which page (default : 1)
-    int64 PageSize = 101; // the number of items to be shown per page (default : 15)
+    int64 goto_page_number = 100; // goto page number : which page (default : 1)
+    int64 page_size = 101; // the number of items to be shown per page (default : 15)
     // order by
-    repeated PagingOrder OrderBy = 200; // order by (default : id desc)
+    repeated paging_order order_by = 200; // order by (default : id desc)
     // cursor mode
-    string CursorColumn = 300; // cursor column (default : id)
-    string CursorDirection = 301; // cursor direction : asc or desc (default : desc)
-    double CursorValue = 302; // cursor value (default : 0)
+    string cursor_column = 300; // cursor column (default : id)
+    string cursor_direction = 301; // cursor direction : asc or desc (default : desc)
+    double cursor_value = 302; // cursor value (default : 0)
 }
 
 /**
- * @apiDefine PagingOrder PagingOrder
+ * @apiDefine paging_order paging_order
  *
- * @apiDescription example : PagingOrder = [{Column:id, Direction:desc}, {Column:id, Direction:desc}]
+ * @apiDescription example : paging_order = [{column:id, direction:desc}, {column:id, direction:desc}]
  *
- * @apiParam (PagingOrder) {String} Column order column (default : id)
- * @apiParam (PagingOrder) {String} Direction order direction (default : desc)
+ * @apiParam (paging_order) {string} column order column (default : id)
+ * @apiParam (paging_order) {string} direction order direction (default : desc)
  */
 
-// PagingOrder : paging order (example : order by id desc)
-message PagingOrder {
-    string Column = 1; // order column (default : id)
-    string Direction = 2; // order direction (default : desc)
+// paging_order : paging order (example : order by id desc)
+message paging_order {
+    string column = 1; // order column (default : id)
+    string direction = 2; // order direction (default : desc)
 }
 
 /**
- * @apiDefine PagingResult PagingResult
+ * @apiDefine paging_result paging_result
  *
- * @apiSuccess (PagingResult) {Int64} PagingMode paging mode
+ * @apiSuccess (paging_result) {int64} paging_mode paging mode
  *
- * @apiSuccess (PagingResult) {Int64} TotalSize total records number
- * @apiSuccess (PagingResult) {Int64} PageSize show records number
- * @apiSuccess (PagingResult) {Int64} CurrentPage current page number
- * @apiSuccess (PagingResult) {Int64} ShowFrom current page show from - to records
- * @apiSuccess (PagingResult) {Int64} ShowTo current page show from - to records
- * @apiSuccess (PagingResult) {Int64} LastPage last page
+ * @apiSuccess (paging_result) {int64} total_size total records number
+ * @apiSuccess (paging_result) {int64} page_size show records number
+ * @apiSuccess (paging_result) {int64} current_page current page number
+ * @apiSuccess (paging_result) {int64} show_from current page show from - to records
+ * @apiSuccess (paging_result) {int64} show_to current page show from - to records
+ * @apiSuccess (paging_result) {int64} last_page last page
  *
- * @apiSuccess (PagingResult) {Array} OrderBy order by
+ * @apiSuccess (paging_result) {paging_order-array} order_by order by
  *
- * @apiSuccess (PagingResult) {String} CursorColumn cursor column
- * @apiSuccess (PagingResult) {String} CursorDirection cursor direction
- * @apiSuccess (PagingResult) {Double} CursorValue cursor value
+ * @apiSuccess (paging_result) {string} cursor_column cursor column
+ * @apiSuccess (paging_result) {string} cursor_direction cursor direction
+ * @apiSuccess (paging_result) {double} cursor_value cursor value
  */
 
-// PagingResult : paging result
-message PagingResult {
-    // paging mode : page number mode andcursor mode
-    int64 PagingMode = 1; // paging mode
+// paging_result : paging result
+message paging_result {
+    // paging mode : page number mode and cursor mode
+    int64 paging_mode = 1; // paging mode
     // page info
-    int64 TotalSize = 100; // total records number
-    int64 PageSize = 101; // the number of items to be shown per page
-    int64 CurrentPage = 102; // current page number
-    int64 ShowFrom = 103; // current page show from - to records
-    int64 ShowTo = 104; // current page show from - to records
-    int64 LastPage = 105; // last page
+    int64 total_size = 100; // total records number
+    int64 page_size = 101; // the number of items to be shown per page
+    int64 current_page = 102; // current page number
+    int64 show_from = 103; // current page show from - to records
+    int64 show_to = 104; // current page show from - to records
+    int64 last_page = 105; // last page
     // order by
-    repeated PagingOrder OrderBy = 200; // order by
+    repeated paging_order order_by = 200; // order by
     // cursor mode
-    string CursorColumn = 300; // cursor column
-    string CursorDirection = 301; // cursor direction
-    double CursorValue = 302; // cursor value
+    string cursor_column = 300; // cursor column
+    string cursor_direction = 301; // cursor direction
+    double cursor_value = 302; // cursor value
     // paging option
-    PagingOption Option = 400; // option
+    paging_option option = 400; // option
 }
