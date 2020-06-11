@@ -3,6 +3,9 @@
 ```bash
 
 protoc -I. -I$GOPATH/src --go_out=. ./*.proto
+# protoc -I. -I%GOPATH%/src --go_opt=paths=source_relative --go_out=. ./*.proto
+# windows
+# protoc -I. -I%GOPATH%/src --go_out=. ./*.proto
 
 ```
 
