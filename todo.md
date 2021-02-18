@@ -1,4 +1,0 @@
-# todo
-
-PagingResult.CursorValue convert PagingResult.CursorValueString
-PagingOption.CursorValue convert PagingOption.CursorValueString
